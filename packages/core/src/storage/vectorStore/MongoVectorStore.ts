@@ -89,6 +89,17 @@ export class MongoVectorStore implements VectorStore {
     this._insertKwargs = insertKwargs;
   }
 
+  static fromUri(
+    uri: string,
+    options: Omit<MongoDBAtlasVectorSearchOptions, "mongodbClient">,
+  ) {
+    const mongodbClient = new MongoClient(uri);
+    return new MongoVectorStore({
+      ...options,
+      mongodbClient,
+    });
+  }
+
   async add(embeddingResults: BaseNode[]): Promise<string[]> {
     const ids: string[] = [];
     const dataToInsert: KeyValue[] = [];
