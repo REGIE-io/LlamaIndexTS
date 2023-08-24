@@ -54,7 +54,7 @@ function toMongodbFilter(standardFilters: MetadataFilters): KeyValue {
   }, {} as KeyValue);
 }
 
-export class MongoVectoreStore implements VectorStore {
+export class MongoVectorStore implements VectorStore {
   private _mongodbClient: MongoClient;
   private _collection: Collection;
   private _indexName: string;

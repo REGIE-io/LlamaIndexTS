@@ -8,6 +8,6 @@ export * from "./indexStore/KVIndexStore";
 export { MongoIndexStore } from "./indexStore/MongoIndexStore";
 export { SimpleIndexStore } from "./indexStore/SimpleIndexStore";
 export * from "./kvStore/types";
-export { MongoVectorStore } from "./vectorStore/MongoVectoreStore";
+export { MongoVectorStore } from "./vectorStore/MongoVectorStore";
 export { SimpleVectorStore } from "./vectorStore/SimpleVectorStore";
 export * from "./vectorStore/types";
