@@ -1,7 +1,7 @@
-import { BaseKVStore } from "../kvStore/types";
-import { IndexStruct, jsonToIndexStruct } from "../../indices/BaseIndex";
 import _ from "lodash";
+import { IndexStruct, jsonToIndexStruct } from "../../indices/BaseIndex";
 import { DEFAULT_NAMESPACE } from "../constants";
+import { BaseKVStore } from "../kvStore/types";
 import { BaseIndexStore } from "./types";
 
 export class KVIndexStore extends BaseIndexStore {
@@ -33,6 +33,7 @@ export class KVIndexStore extends BaseIndexStore {
       return structs[0];
     } else {
       let json = await this._kvStore.get(structId, this._collection);
+      console.log(json);
       if (_.isNil(json)) {
         return;
       }

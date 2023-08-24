@@ -77,7 +77,7 @@ export class VectorStoreIndex extends BaseIndex<IndexDict> {
         options.indexId,
       )) as IndexDict;
     } else {
-      indexStruct = undefined;
+      indexStruct = new IndexDict(options.indexId);
     }
 
     // check indexStruct type
