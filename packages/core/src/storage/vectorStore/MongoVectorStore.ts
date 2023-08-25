@@ -1,5 +1,5 @@
 import { Collection, MongoClient } from "mongodb";
-import { BaseNode, MetadataMode, TextNode } from "../../Node";
+import { BaseNode, Document, MetadataMode } from "../../Node";
 import {
   MetadataFilters,
   VectorStore,
@@ -43,7 +43,7 @@ function nodeToMetadataDict(
 
 function metadataDictToNode(metadata: KeyValue) {
   const nodeJson: KeyValue = JSON.parse(metadata["node_content"]);
-  return new TextNode(nodeJson);
+  return new Document(nodeJson);
 }
 
 function toMongodbFilter(standardFilters: MetadataFilters): KeyValue {
