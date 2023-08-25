@@ -1,12 +1,8 @@
-import { DEFAULT_NAMESPACE_FOR_INDEX_STORE } from "../constants";
 import { MongoDBKVStore } from "../kvStore/MongoKVStore";
 import { KVIndexStore } from "./KVIndexStore";
 
 export class MongoIndexStore extends KVIndexStore {
-  constructor(
-    store: MongoDBKVStore,
-    namespace: string = DEFAULT_NAMESPACE_FOR_INDEX_STORE,
-  ) {
+  constructor(store: MongoDBKVStore, namespace?: string) {
     super(store, namespace);
   }
 

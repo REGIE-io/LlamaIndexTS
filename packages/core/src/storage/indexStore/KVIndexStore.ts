@@ -33,7 +33,6 @@ export class KVIndexStore extends BaseIndexStore {
       return structs[0];
     } else {
       let json = await this._kvStore.get(structId, this._collection);
-      console.log(json);
       if (_.isNil(json)) {
         return;
       }
