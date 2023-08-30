@@ -1,5 +1,25 @@
 # llamaindex
 
+## 0.0.27
+
+### Patch Changes
+
+- 1601028: OpenAI 4.3.1 and Anthropic 0.6.2
+
+## 0.0.24
+
+### Patch Changes
+
+- e4af7b3: Renamed ListIndex to SummaryIndex to better indicate its use.
+- 259fe63: Strong types for prompts.
+
+## 0.0.23
+
+### Patch Changes
+
+- Added MetadataMode to ResponseSynthesizer (thanks @TomPenguin)
+- 9d6b2ed: Added Markdown Reader (huge shoutout to @swk777)
+
 ## 0.0.22
 
 ### Patch Changes
