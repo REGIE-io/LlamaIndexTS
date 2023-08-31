@@ -59,8 +59,8 @@ export class MongoDBKVStore extends BaseKVStore {
   ): Promise<{ [key: string]: KeyValue }> {
     const results = await this._db.collection(collection).find().toArray();
     return results.reduce((output: KeyValue, result) => {
-      const key = String(result._id);
       const { _id, ...toRet } = result;
+      const key = String(_id);
       output[key] = toRet;
       return output;
     }, {});

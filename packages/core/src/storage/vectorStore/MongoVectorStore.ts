@@ -194,7 +194,7 @@ export class MongoVectorStore implements VectorStore {
     const topKScores: number[] = [];
 
     for (const doc of docs) {
-      const score = doc.score;
+      const { score } = doc;
       const id = doc[this._idKey];
       const metadataDict = doc[this._metadataKey];
       const node = metadataDictToNode(metadataDict);
@@ -210,5 +210,9 @@ export class MongoVectorStore implements VectorStore {
     };
 
     return result;
+  }
+
+  async persist(...args: any) {
+    throw new Error("Method not implemented");
   }
 }

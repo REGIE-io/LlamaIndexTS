@@ -76,8 +76,10 @@ export class VectorStoreIndex extends BaseIndex<IndexDict> {
       indexStruct = (await indexStore.getIndexStruct(
         options.indexId,
       )) as IndexDict;
-    } else {
+    } else if (options.indexId) {
       indexStruct = new IndexDict(options.indexId);
+    } else {
+      indexStruct = undefined;
     }
 
     // check indexStruct type
