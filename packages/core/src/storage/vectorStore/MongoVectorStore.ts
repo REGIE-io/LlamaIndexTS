@@ -1,5 +1,7 @@
 import { Collection, MongoClient } from "mongodb";
+import { v4 as uuidv4 } from "uuid";
 import { BaseNode, Document, MetadataMode } from "../../Node";
+import { isDefined } from "./type-guards";
 import {
   MetadataFilters,
   VectorStore,
@@ -19,6 +21,7 @@ interface MongoDBAtlasVectorSearchOptions {
   metadataKey?: string;
   insertKwargs?: KeyValue;
   dbName?: string;
+  indexId?: string;
 }
 
 const DEFAULT_TEXT_KEY = "text";
@@ -48,10 +51,19 @@ function metadataDictToNode(metadata: KeyValue) {
 
 function toMongodbFilter(standardFilters: MetadataFilters): KeyValue {
   const { filters } = standardFilters;
-  return filters.reduce((acc, cur) => {
-    acc[cur.key] = cur.value;
-    return acc;
-  }, {} as KeyValue);
+  const mongoFilters = filters
+    .map((filter) => {
+      if (filter.filterType === "ExactMatch") {
+        return {
+          text: {
+            path: filter.key,
+            query: [filter.value],
+          },
+        };
+      }
+    })
+    .filter(isDefined);
+  return mongoFilters;
 }
 
 export class MongoVectorStore implements VectorStore {
@@ -63,6 +75,7 @@ export class MongoVectorStore implements VectorStore {
   private _textKey: string;
   private _metadataKey: string;
   private _insertKwargs: KeyValue;
+  private _id: string;
   storesText: boolean = true;
   flatMetadata: boolean = true;
   constructor(options: MongoDBAtlasVectorSearchOptions) {
@@ -76,6 +89,7 @@ export class MongoVectorStore implements VectorStore {
       textKey = "text",
       metadataKey = "metadata",
       insertKwargs = {},
+      indexId = uuidv4(),
       ...kwargs
     } = options;
 
@@ -87,6 +101,7 @@ export class MongoVectorStore implements VectorStore {
     this._textKey = textKey;
     this._metadataKey = metadataKey;
     this._insertKwargs = insertKwargs;
+    this._id = indexId;
   }
 
   static fromUri(
@@ -103,7 +118,7 @@ export class MongoVectorStore implements VectorStore {
   async add(embeddingResults: BaseNode[]): Promise<string[]> {
     const ids: string[] = [];
     const dataToInsert: KeyValue[] = [];
-    for (let result of embeddingResults) {
+    for (const result of embeddingResults) {
       const nodeId = result.id_;
       const metadata = nodeToMetadataDict(result, true);
       const entry: KeyValue = {
@@ -111,6 +126,7 @@ export class MongoVectorStore implements VectorStore {
         [this._embeddingKey]: result.embedding,
         [this._textKey]: result.getContent(MetadataMode.NONE) || "",
         [this._metadataKey]: metadata,
+        indexId: this._id,
       };
       dataToInsert.push(entry);
       ids.push(nodeId);
@@ -143,6 +159,18 @@ export class MongoVectorStore implements VectorStore {
     if (query.filters) {
       knnBeta.filter = toMongodbFilter(query.filters);
     }
+
+    if (!query.filters) {
+      query.filters = { filters: [] };
+    }
+    if (this._id) {
+      query.filters.filters.push({
+        key: "indexId",
+        value: this._id,
+        filterType: "ExactMatch",
+      });
+    }
+    knnBeta.filter = { compound: { filter: toMongodbFilter(query.filters) } };
 
     const pipeline: KeyValue[] = [
       {
