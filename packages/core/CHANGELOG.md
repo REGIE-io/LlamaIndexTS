@@ -5,6 +5,13 @@
 ### Patch Changes
 
 - 1601028: OpenAI 4.3.1 and Anthropic 0.6.2
+## 0.0.25
+
+### Patch Changes
+
+- e21eca2: OpenAI 4.3.1 and Anthropic 0.6.2
+- 40a8f07: Update READMEs (thanks @andfk)
+- 40a8f07: Bug: missing exports from storage (thanks @aashutoshrathi)
 
 ## 0.0.24
 
