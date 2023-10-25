@@ -1,5 +1,12 @@
 # llamaindex
 
+## 0.1.29
+
+### Patch Changes
+
+- 6c55b2d: Give HistoryChatEngine pluggable options (thanks @marcusschiesser)
+- 6c55b2d: Added LLMMetadata (thanks @marcusschiesser)
+
 ## 0.0.30
 
 ### Patch Changes
