@@ -1,5 +1,50 @@
 # simple
 
+## 0.0.28
+
+### Patch Changes
+
+- Updated dependencies [139abad]
+- Updated dependencies [139abad]
+- Updated dependencies [eb0e994]
+- Updated dependencies [eb0e994]
+- Updated dependencies [139abad]
+  - llamaindex@0.0.30
+
+## 0.0.27
+
+### Patch Changes
+
+- Updated dependencies [a52143b]
+- Updated dependencies [1b7fd95]
+- Updated dependencies [0db3f41]
+  - llamaindex@0.0.29
+
+## 0.0.26
+
+### Patch Changes
+
+- Updated dependencies [96bb657]
+- Updated dependencies [96bb657]
+- Updated dependencies [837854d]
+  - llamaindex@0.0.28
+
+## 0.0.25
+
+### Patch Changes
+
+- Updated dependencies [4a5591b]
+- Updated dependencies [4a5591b]
+- Updated dependencies [4a5591b]
+  - llamaindex@0.0.27
+
+## 0.0.24
+
+### Patch Changes
+
+- Updated dependencies [5bb55bc]
+  - llamaindex@0.0.26
+
 ## 0.0.23
 
 ### Patch Changes

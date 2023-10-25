@@ -1,10 +1,45 @@
 # llamaindex
 
+## 0.0.30
+
+### Patch Changes
+
+- 139abad: Streaming improvements including Anthropic (thanks @kkang2097)
+- 139abad: Portkey integration (Thank you @noble-varghese)
+- eb0e994: Add export for PromptHelper (thanks @zigamall)
+- eb0e994: Publish ESM module again
+- 139abad: Pinecone demo (thanks @Einsenhorn)
+
+## 0.0.29
+
+### Patch Changes
+
+- a52143b: Added DocxReader for Word documents (thanks @jayantasamaddar)
+- 1b7fd95: Updated OpenAI streaming (thanks @kkang2097)
+- 0db3f41: Migrated to Tiktoken lite, which hopefully fixes the Windows issue
+
+## 0.0.28
+
+### Patch Changes
+
+- 96bb657: Typesafe metadata (thanks @TomPenguin)
+- 96bb657: MongoReader (thanks @kkang2097)
+- 837854d: Make OutputParser less strict and add tests (Thanks @kkang2097)
+
 ## 0.0.27
 
 ### Patch Changes
 
-- 1601028: OpenAI 4.3.1 and Anthropic 0.6.2
+- 4a5591b: Chat History summarization (thanks @marcusschiesser)
+- 4a5591b: Notion database support (thanks @TomPenguin)
+- 4a5591b: KeywordIndex (thanks @swk777)
+
+## 0.0.26
+
+### Patch Changes
+
+- 5bb55bc: Add notion loader (thank you @TomPenguin!)
+
 ## 0.0.25
 
 ### Patch Changes

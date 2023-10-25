@@ -1,12 +1,15 @@
 {
-  "version": "0.0.23",
+  "version": "0.0.28",
   "private": true,
   "name": "simple",
   "dependencies": {
+    "@notionhq/client": "^2.2.12",
+    "@pinecone-database/pinecone": "^1.0.1",
+    "commander": "^11.0.0",
     "llamaindex": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^18.17.6"
+    "@types/node": "^18.17.12"
   },
   "scripts": {
     "lint": "eslint ."
